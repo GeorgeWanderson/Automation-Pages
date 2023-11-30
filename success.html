@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+    <link rel="stylesheet" href="/assets/main.css">
+</head>
+<body class="dark-theme">
+    <header>
+        <nav>
+            <ul class="left-align">
+                <li><a href="index.html">Voltar para Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="center-text">
+        <p>Cadastro efetuado com sucesso!</p>
+        <button onclick="downloadJson()">Download JSON</button>
+    </div>
+
+    <script>
+        function downloadJson() {
+            // Obtendo os dados do localStorage
+            const userDataJson = localStorage.getItem("userData");
+
+            // Criando um blob com os dados em JSON
+            const blob = new Blob([userDataJson], { type: "application/json" });
+
+            // Criando um link de download
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "userData.json";
+
+            // Adicionando o link ao documento e simulando o clique
+            document.body.appendChild(link);
+            link.click();
+
+            // Removendo o link do documento
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
